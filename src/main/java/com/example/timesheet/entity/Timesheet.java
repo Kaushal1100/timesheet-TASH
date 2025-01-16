@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +16,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Data
+@Table(name="timesheetdetails")
 public class Timesheet {
 
 	@Id
@@ -20,29 +24,41 @@ public class Timesheet {
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "projectname")
+	@Column(name = "project_name")
 	private String projectName;
 	
-	@Column(name = "mondayHours")
-	private int mondayHours;
+	@Column(name = "monday_hours")
+	private float mondayHours;
 	
-	@Column(name = "tuesdayHours")
-	private int tuesdayHours;
+	@Column(name = "tuesday_hours")
+	private float tuesdayHours;
 	
-	@Column(name = "wednesdayHours")
-	private int wednesdayHours;
+	@Column(name = "wednesday_hours")
+	private float wednesdayHours;
 	
-	@Column(name = "thursdayHours")
-	private int thursdayHours;
+	@Column(name = "thursday_hours")
+	private float thursdayHours;
 	
-	@Column(name = "fridayHours")
-	private int fridayHours;
+	@Column(name = "friday_hours")
+	private float fridayHours;
 	
-	@Column(name = "saturdayHours")
-	private int saturdayHours;
+	@Column(name = "saturday_hours")
+	private float saturdayHours;
 	
-	@Column(name = "sundayHours")
-	private int sundayHours;
+	@Column(name = "sunday_hours")
+	private float sundayHours;
+
+	@Column(name="total_pay")
+	private float totalPay;
+	
+	@Column(name="hourly_rate")
+	private float hourlyRate;
+	
+	@Column(name="total_hours")
+	private float totalHours;
+	@ManyToOne
+	@JoinColumn(name="employee_id")
+	private Employee employee;
 
 
 }

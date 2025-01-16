@@ -15,6 +15,8 @@ public class EmployeeResponse {
 	private String phone;
 	private String email;
 	private String address;
+	private String username;
+	private String role;
 	
 	public EmployeeResponse(Employee employee) {
 		this.id=employee.getId();
@@ -22,6 +24,8 @@ public class EmployeeResponse {
 		this.phone=employee.getPhone();
 		this.email=employee.getEmail();
 		this.address=employee.getAddress();
+		this.username=employee.getUsername();
+		this.role=employee.getRole();
 	}
 
 }

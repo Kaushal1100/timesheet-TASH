@@ -13,4 +13,7 @@ public class EmployeeRequest {
 		private String phone;
 		private String email;
 		private String address;
+		private String username;
+		private String password;	
+		private String role;
 }
