@@ -24,26 +24,32 @@ public class SecurityConfiguration {
 		return httpSecurity
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(registry->{
-						registry.requestMatchers("/","/register/**").permitAll();
+						registry.requestMatchers("/register","/register/**").permitAll();
 						registry.requestMatchers("/admin/**").hasRole("ADMIN");
 						registry.requestMatchers("/user/**").hasRole("USER"); 
+						registry.requestMatchers("/login","/register").permitAll();
 						registry.requestMatchers("/custom-login").permitAll();
+						registry.requestMatchers("/alltimesheet").authenticated();
 						registry.requestMatchers("/success.html").hasAnyRole("USER","ADMIN");
 						registry.anyRequest().authenticated(); 
 				})
-						.formLogin(httpSecurityFormLoginConfigurer ->{
-							httpSecurityFormLoginConfigurer
-							.loginPage("/login")
-							 .defaultSuccessUrl("/success.html", true)
-							.permitAll();
-						})
-						.logout(httpSecurityLogoutConfigurer -> {
-			                httpSecurityLogoutConfigurer
-			                        .logoutUrl("/logout")
-			                        .logoutSuccessUrl("/")
-			                        .permitAll();
-			            })
-						.build();
+				.formLogin(form -> form
+		                .loginPage("/login") // Custom login page URL
+		                .permitAll()) // Allow all to access the login page
+		            .build();
+//						.formLogin(httpSecurityFormLoginConfigurer ->{
+//							httpSecurityFormLoginConfigurer
+//							.loginPage("/login")
+//							 .defaultSuccessUrl("/success.html", true)
+//							.permitAll();
+//						})
+//						.logout(httpSecurityLogoutConfigurer -> {
+//			                httpSecurityLogoutConfigurer
+//			                        .logoutUrl("/logout")
+//			                        .logoutSuccessUrl("/")
+//			                        .permitAll();
+//			            })
+//						.build();
 	}
 	
 //	@Bean

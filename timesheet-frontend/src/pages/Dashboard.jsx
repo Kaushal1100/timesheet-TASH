@@ -23,7 +23,12 @@ function Dashboard(){
             };
         
             fetchTimesheets();
-          }, []);
+              // Cleanup function to avoid setting state if the component unmounts
+             return () => {
+                    setLoading(false);
+                    setError(null);
+            };
+        }, []);
     if(loading) {
         return <p> Loading timesheets... </p>
     }

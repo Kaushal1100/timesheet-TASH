@@ -11,9 +11,12 @@ const Login=() =>{
 
         try{
             const response=await axios.post('http://localhost:8082/login',{
-            username,password,
+                username: username,
+                password: password
         });
             if(response.data){
+            setUsername('');
+            setPassword('');
             navigate('/dashboard');
             } 
         }catch(error){
@@ -38,7 +41,7 @@ const Login=() =>{
                 value={password} onChange={(e)=> setPassword(e.target.value)}
                 style={{width: "100%", padding: "10px" }}/>
                 </div>
-                <button type="Submit" style={{ width: "100%", padding: "10px" }}>
+                <button type="submit" style={{ width: "100%", padding: "10px" }}>
                 Login</button>
              </form>
         </div>      
